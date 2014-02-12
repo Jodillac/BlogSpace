@@ -1,0 +1,23 @@
+﻿<div ng-controller="BlogSearchController">
+    <div ng-repeat="blog in Blogs">
+        <div ng-switch on="$index % 3">
+            <div ng-switch-when="0" class="row">
+                <div ng-repeat="e in Blogs.slice($index, $index + 3)">
+                    <div class="col-md-4">
+                        <h2>{{e.Title}}</h2>
+                        <p>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary btn-xs" ng-repeat="category in e.BlogCategories">
+                                    {{category.Category.Title}}
+                                </button>
+                            </div>
+                        </p>
+                        <p>{{e.Content}}</p>
+                        <p><a class="btn btn-default" href="#/blogdetail/{{e.Id}}/{{e.Title}}" role="button">View details »</a></p>
+                        <h6><span class="label label-primary">By Manoj Kumar Bisht at {{e.PublishedDate|date:'mediumDate'}}</span></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

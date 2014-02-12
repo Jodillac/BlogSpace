@@ -1,0 +1,7 @@
+﻿<form class="navbar-form navbar-right" role="search" ng-controller="BlogCategoryController" ng-submit="onFormSubmit()">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+    </div>
+    
+    <a class="btn btn-primary" href="#/blogsearch/{{searchText}}" role="button">Search</a>
+</form>

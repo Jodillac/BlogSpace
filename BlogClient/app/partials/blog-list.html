@@ -1,0 +1,32 @@
+﻿<div class="content">
+    <!--<div ng-controller="LoginController">
+        <blog-signin-or-signout></blog-signin-or-signout>
+    </div>-->
+
+    <div ng-controller="BlogController">
+        <div infinite-scroll="LoadNextBlogs()" infinite-scroll-distance='1' infinite-scroll-disabled='busy'>
+            <div ng-repeat="blog in Blogs">
+                <div ng-switch on="$index % 3">
+                    <div ng-switch-when="0" class="row">
+                        <div ng-repeat="e in Blogs.slice($index, $index + 3)">
+                            <div class="col-md-4">
+                                <h2>{{e.Title}}</h2>
+                                <p>
+                                    <div class="btn-group" ng-repeat="category in e.BlogCategories">
+                                        <button type="button" class="btn btn-primary btn-xs" ng-click="navigateToCategory(category.Category.Title)">{{category.Category.Title}}</button>&nbsp;
+                                    </div>
+                                </p>
+                                <p>{{e.Content}}</p>
+                                <p><a class="btn btn-default" href="#/blogdetail/{{e.Id}}/{{e.Title}}" role="button">View details »</a></p>
+                                <h6><span class="label label-primary">By Manoj Kumar Bisht at {{e.PublishedDate|date:'mediumDate'}}</span></h6>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show='busy' style="text-align:center "><img src="img/loading.gif" /></div>
+        </div>
+
+    </div>
+</div>
