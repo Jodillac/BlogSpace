@@ -3,6 +3,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('blogSpace', [
   'ngRoute',
+  'ngSanitize',
   'blogSpace.filters',
   'blogSpace.services',
   'blogSpace.directives',

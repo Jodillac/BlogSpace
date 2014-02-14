@@ -3,8 +3,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">{{Blog.Title}}</h3>
         </div>
-        <div class="panel-body">
-            {{Blog.Content}}
+        <div class="panel-body" ng-bind-html="Blog.Content">
         </div>
     </div>
 </div>
