@@ -16,17 +16,16 @@ function ($scope, categoryService, $location, sharedCategoryData, $rootScope) {
         $scope.Categories = Categories
     });
 
-    //$scope.categoryfilter = "Category Filter";
     $scope.categoryfilter = sharedCategoryData.GetCategoryFilter();
 
     $scope.setFilter = function (filtertext) {
         sharedCategoryData.SetCategoryFilter(filtertext);
-        //$scope.categoryfilter = filtertext;
-        $scope.categoryfilter= sharedCategoryData.GetCategoryFilter();
+        $scope.categoryfilter = sharedCategoryData.GetCategoryFilter();
+        
     };
 
-    $scope.$watch('categoryFilter', function () {
-        $scope.categoryfilter = sharedCategoryData.GetCategoryFilter();
+    $scope.$on('sharedCategoryData.update', function (event, categoryFilterTitle) {
+        $scope.categoryfilter = categoryFilterTitle;
     });
 
     $scope.isActive = function (category) {
@@ -58,8 +57,6 @@ function ($scope, blogService, $routeParams, $location, sharedCategoryData,$root
         $scope.navigateToCategory = function (category) {
             sharedCategoryData.SetCategoryFilter(category);
             $location.path('/blogcategory/' + category);
-            //$scope.$digest();
-//            $scope.categoryfilter = category;
         };
 
 
@@ -117,7 +114,6 @@ blogSpaceController.controller('BlogDetailController', ['$scope', 'blogService',
 blogSpaceController.controller('BlogSearchController', ['$scope', 'blogService', '$routeParams', '$location',
     function ($scope, blogService, $routeParams, $location) {
         $scope.Blogs = [];
-        //$scope.category = $routeParams.category;
         $scope.searchText = $routeParams.search;
 
         if (typeof ($scope.searchText) != 'undefined') {

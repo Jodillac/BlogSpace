@@ -1,10 +1,8 @@
 'use strict';
-
 /* Directives */
 
-
 var blogSpaceDirective = angular.module('blogSpace.directives', []);
-  
+
 blogSpaceDirective.directive('blogSearch', function ($rootScope) {
     return {
         restrict: 'AE',
@@ -13,3 +11,12 @@ blogSpaceDirective.directive('blogSearch', function ($rootScope) {
     };
 });
 
+blogSpaceDirective.directive('blogHeaderList', function ($rootScope) {
+
+    return {
+        restrict: 'AE',
+        transclude: true,
+        templateUrl: 'partials/blog-header-strip.html'
+
+    };
+});

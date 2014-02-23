@@ -36,7 +36,7 @@ blogSpaceService.factory('blogService', ['Restangular', function (Restangular) {
 }]);
 
 
-blogSpaceService.factory('sharedCategoryData', [function () {
+blogSpaceService.factory('sharedCategoryData', ['$rootScope',function ($rootScope) {
     var categoryFilterTitle = 'Category Filter';
 
     return {
@@ -45,6 +45,7 @@ blogSpaceService.factory('sharedCategoryData', [function () {
         },
         SetCategoryFilter: function (newFilterData) {
             categoryFilterTitle = newFilterData;
+            $rootScope.$broadcast('sharedCategoryData.update', categoryFilterTitle);
         }
     };
 }]);
