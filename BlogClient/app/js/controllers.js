@@ -1,10 +1,10 @@
-    'use strict';
+'use strict';
 
 /* Controllers */
 
 var blogSpaceController = angular.module('blogSpace.controllers', []);
 
-blogSpaceController.controller('BlogCategoryController', ['$scope', 'categoryService', '$location','sharedCategoryData','$rootScope',
+blogSpaceController.controller('BlogCategoryController', ['$scope', 'categoryService', '$location', 'sharedCategoryData', '$rootScope',
 function ($scope, categoryService, $location, sharedCategoryData, $rootScope) {
     $scope.Categories = [];
 
@@ -21,7 +21,7 @@ function ($scope, categoryService, $location, sharedCategoryData, $rootScope) {
     $scope.setFilter = function (filtertext) {
         sharedCategoryData.SetCategoryFilter(filtertext);
         $scope.categoryfilter = sharedCategoryData.GetCategoryFilter();
-        
+
     };
 
     $scope.$on('sharedCategoryData.update', function (event, categoryFilterTitle) {
@@ -43,60 +43,60 @@ function ($scope, categoryService, $location, sharedCategoryData, $rootScope) {
     };
 }]);
 
-blogSpaceController.controller('BlogController', ['$scope', 'blogService', '$routeParams', '$location', 'sharedCategoryData','$rootScope',
-function ($scope, blogService, $routeParams, $location, sharedCategoryData,$rootScope) {
+blogSpaceController.controller('BlogController', ['$scope', 'blogService', '$routeParams', '$location', 'sharedCategoryData', '$rootScope',
+function ($scope, blogService, $routeParams, $location, sharedCategoryData, $rootScope) {
 
-        $scope.Blogs = [];
-        $scope.category = $routeParams.category;
-        $scope.busy = false;
-        $scope.after = '';
-        $scope.searchText = "";
-        $scope.pageIndex = -1;
-        $scope.lastPageSize = -1;
+    $scope.Blogs = [];
+    $scope.category = $routeParams.category;
+    $scope.busy = false;
+    $scope.after = '';
+    $scope.searchText = "";
+    $scope.pageIndex = -1;
+    $scope.lastPageSize = -1;
 
-        $scope.navigateToCategory = function (category) {
-            sharedCategoryData.SetCategoryFilter(category);
-            $location.path('/blogcategory/' + category);
-        };
+    $scope.navigateToCategory = function (category) {
+        sharedCategoryData.SetCategoryFilter(category);
+        $location.path('/blogcategory/' + category);
+    };
 
 
 
-        $scope.LoadNextBlogs = function () {
-            if ($scope.lastPageSize == 0) return;
-            if ($scope.busy) return;
-            $scope.busy = true;
+    $scope.LoadNextBlogs = function () {
+        if ($scope.lastPageSize == 0) return;
+        if ($scope.busy) return;
+        $scope.busy = true;
 
-            if (typeof ($scope.category) != 'undefined') {
-                $scope.pageIndex++;
-                blogService.GetBlogListByCategory($scope.category, $scope.pageIndex).then(function (Blogs) {
-                    if (Blogs.length == 0) {
-                        $scope.lastPageSize = 0;
+        if (typeof ($scope.category) != 'undefined') {
+            $scope.pageIndex++;
+            blogService.GetBlogListByCategory($scope.category, $scope.pageIndex).then(function (Blogs) {
+                if (Blogs.length == 0) {
+                    $scope.lastPageSize = 0;
+                }
+                else {
+                    for (var i = 0; i < Blogs.length; i++) {
+                        $scope.Blogs.push(Blogs[i]);
                     }
-                    else {
-                        for (var i = 0; i < Blogs.length; i++) {
-                            $scope.Blogs.push(Blogs[i]);
-                        }
-                    }
-                    $scope.busy = false;
+                }
+                $scope.busy = false;
 
-                });
-            }
-            else {
-                $scope.pageIndex++;
-                blogService.GetBlogList($scope.pageIndex).then(function (Blogs) {
-                    if (Blogs.length == 0) {
-                        $scope.lastPageSize = 0;
+            });
+        }
+        else {
+            $scope.pageIndex++;
+            blogService.GetBlogList($scope.pageIndex).then(function (Blogs) {
+                if (Blogs.length == 0) {
+                    $scope.lastPageSize = 0;
+                }
+                else {
+                    for (var i = 0; i < Blogs.length; i++) {
+                        $scope.Blogs.push(Blogs[i]);
                     }
-                    else {
-                        for (var i = 0; i < Blogs.length; i++) {
-                            $scope.Blogs.push(Blogs[i]);
-                        }
-                    }
-                    $scope.busy = false;
-                });
-            }
-        };
-    }]);
+                }
+                $scope.busy = false;
+            });
+        }
+    };
+}]);
 
 blogSpaceController.controller('BlogDetailController', ['$scope', 'blogService', '$routeParams',
     function ($scope, blogService, $routeParams) {
@@ -134,3 +134,30 @@ blogSpaceController.controller('BlogSearchController', ['$scope', 'blogService',
             }
         };
     }]);
+
+
+//Keep it as it is to be used by bootstrap directive
+function CarouselDemoCtrl($scope) {
+    $scope.myInterval = 3000;
+
+    //production
+    var slides = $scope.slides = [
+                            { image: 'http://www.manojbisht.com/images/profile/profile1-1.jpg' },
+                            { image: 'http://www.manojbisht.com/images/profile/profile1-2.jpg' },
+                            { image: 'http://www.manojbisht.com/images/profile/profile1-3.jpg' }
+    ];
+
+    //var slides = $scope.slides = [];
+
+    //$scope.addSlide = function () {
+    //    var newWidth = 600 + slides.length;
+    //    slides.push({
+    //        image: 'http://placekitten.com/' + newWidth + '/300',
+    //        text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 4] + ' ' +
+    //          ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+    //    });
+    //};
+    //for (var i = 0; i < 4; i++) {
+    //    $scope.addSlide();
+    //}
+}

@@ -17,6 +17,7 @@ config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/blogcategory/:category', { templateUrl: 'partials/blog-list.html', controller: 'BlogController' });
     $routeProvider.when('/blogdetail/:id/:title', { templateUrl: 'partials/blog-detail.html', controller: 'BlogDetailController' });
     $routeProvider.when('/blogsearch/:search', { templateUrl: 'partials/blog-list-search.html', controller: 'BlogSearchController' });
+    $routeProvider.when('/profile', { templateUrl: 'partials/profile.html', controller: 'CarouselDemoCtrl' });
     $routeProvider.otherwise({ redirectTo: '/blog' });
 }]);
 
