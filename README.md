@@ -4,6 +4,7 @@ BlogSpace
 Blog Space Project Repository
 
 Brief:
+
 BlogSpace is an open source application built on top of cutting edge technology AngularJS, Bootstrap, RESTful Services (WebAPI 2.1) and SQL Server.
 
 Hosted application available @ www.manojbisht.com
@@ -11,14 +12,19 @@ Hosted application available @ www.manojbisht.com
 For documentation @ http://www.manojbisht.com/#/blogdetail/1/Blogspace%20-%20An%20open%20source%20blog%20site%20in%20AngularJS%20and%20RESTful%20API
 
 Important Configuartion if reusing code
+
 1. Update the google anaytics code in the index.html file
+
 2. Update the API path in App.js
 
 Version History
 
 V1.0.2
+
 --Added google anaytics code in the webpage using angularytics
+
 --Added profile page with bootstrap carousel
+
 --minor defect to update filter list on the top when selecting a category from the blog post listing
 
 V1.0.1
