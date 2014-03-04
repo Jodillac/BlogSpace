@@ -9,6 +9,7 @@ angular.module('blogSpace', [
   'blogSpace.directives',
   'blogSpace.controllers',
   'blogSpace.restModule',
+  'blogspace.googleAnalytics',
   'infinite-scroll',
   'ui.bootstrap'
 ]).
@@ -21,16 +22,16 @@ config(['$routeProvider', function($routeProvider) {
     $routeProvider.otherwise({ redirectTo: '/blog' });
 }]);
 
-var restModule = angular.module('blogSpace.restModule', ['restangular']);
+    var restModule = angular.module('blogSpace.restModule', ['restangular']);
 
-restModule.config(function (RestangularProvider) {
+    restModule.config(function (RestangularProvider) {
 
-    //Local
-    RestangularProvider.setBaseUrl('http://localhost/api/api/');
-    //Prod
-    //RestangularProvider.setBaseUrl('http://http://blogspace.cloudapp.net/api/api/');
+        //Local
+        RestangularProvider.setBaseUrl('http://localhost/api/api/');
+        //Prod
+        //RestangularProvider.setBaseUrl('http://manojbisht.com/api/api/');
 
-    RestangularProvider.setErrorInterceptor(
+        RestangularProvider.setErrorInterceptor(
          function (resp) {
              if (resp.config.method == 'GET' && resp.status == 401) {
                  handleUnAuthorize();
@@ -38,11 +39,18 @@ restModule.config(function (RestangularProvider) {
              }
              // stop the promise chain
          });
-});
+    });
 
-function handleUnAuthorize() {
-    var e = document.getElementsByTagName('form');
-    var injector = angular.element(e).injector();
-    var location = injector.get('$location');
-    location.path("/UnAuthorize");
-}
+    function handleUnAuthorize() {
+        var e = document.getElementsByTagName('form');
+        var injector = angular.element(e).injector();
+        var location = injector.get('$location');
+        location.path("/UnAuthorize");
+    }
+
+    angular.module('blogspace.googleAnalytics', ['angularytics'])
+      .config(function (AngularyticsProvider) {
+          AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
+      }).run(function (Angularytics) {
+          Angularytics.init();
+      });
