@@ -12,3 +12,8 @@ body {
 .theme-showcase > p > .btn {
   margin: 5px 0;
 }
+
+img{
+    max-width:100%;
+    height:auto;
+}
