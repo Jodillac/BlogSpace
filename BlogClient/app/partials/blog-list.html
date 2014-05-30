@@ -17,7 +17,8 @@
                                     </div>
                                 </p>
                                 <p><div ng-bind-html="e.ShortContent"></div></p>
-                                <p><a class="btn btn-default" href="#/blogdetail/{{e.Id}}/{{e.Title}}" role="button">View details »</a></p>
+                                <!--<p><a class="btn btn-default" href="#!/blogdetail/{{e.Id}}/{{e.Title}}" data-disqus-identifier="{{e.Id}}" role="button">View details »</a></p>-->
+                                <p><a class="btn btn-default" href="#!/blogdetail/{{e.Id}}/{{e.Title}}" role="button">View details »</a></p>
                                 <h6><span class="label label-primary">By Manoj Kumar Bisht at {{e.PublishedDate|date:'mediumDate'}}</span></h6>
                             </div>
 
@@ -30,3 +31,4 @@
 
     </div>
 </div>
+<!--<disqus-identifier></disqus-identifier>-->

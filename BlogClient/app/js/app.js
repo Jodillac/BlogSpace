@@ -11,9 +11,12 @@ angular.module('blogSpace', [
   'blogSpace.restModule',
   'blogspace.googleAnalytics',
   'infinite-scroll',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngDisqus'
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$disqusProvider', '$routeProvider', '$locationProvider', function ($disqusProvider, $routeProvider, $locationProvider) {
+    $disqusProvider.setShortname('manojbisht'); // Configure the disqus shortname
+    $locationProvider.hashPrefix('!');                 // Disqus needs hashbang in urls. If you are using pushstate then no need for this.
     $routeProvider.when('/blog', { templateUrl: 'partials/blog-list.html', controller: 'BlogController' });
     $routeProvider.when('/blogcategory/:category', { templateUrl: 'partials/blog-list.html', controller: 'BlogController' });
     $routeProvider.when('/blogdetail/:id/:title', { templateUrl: 'partials/blog-detail.html', controller: 'BlogDetailController' });
