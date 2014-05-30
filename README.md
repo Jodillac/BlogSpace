@@ -17,7 +17,16 @@ Important Configuartion if reusing code
 
 2. Update the API path in App.js
 
+3. Update DISQUS short name in App.js ($disqusProvider.setShortname('manojbisht'); // Configure the disqus shortname)
+
 Version History
+
+V1.1
+
+--Added commenting feature using DISQUS
+
+--Images on the detail page resized based on device width
+
 
 V1.0.2
 
